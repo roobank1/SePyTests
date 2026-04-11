@@ -43,4 +43,11 @@ pytest Test-Se/tests/duckduckgo_tests --html=duckduckgo_test_report.html -q
 Screenshots and artifacts
 - Tests save screenshots under `Test-Se/tests/<suite>/test_screenshots/` depending on the test.
 
+Saved page source
+- The SauceDemo test saves the full page HTML to: `tests/secretsauce_tests/Webpage_task_11.txt`.
+
+Report files
+- Secretsauce HTML report: `secretsauce_test_report.html` (workspace root)
+- DuckDuckGo HTML report: `duckduckgo_test_report.html` (workspace root)
+
 

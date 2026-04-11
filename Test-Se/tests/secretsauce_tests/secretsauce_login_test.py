@@ -28,6 +28,15 @@ def take_screenshot(driver, path):
     assert os.path.exists(path)
 
 
+def save_page_source(driver, filename="Webpage_task_11.txt"):
+    """Save full page HTML to Test-Se/tests/secretsauce_tests/<filename> and return path."""
+    path = os.path.join(os.getcwd(), "Test-Se", "tests", "secretsauce_tests", filename)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(driver.page_source)
+    return path
+
+
 def perform_login(driver, username, password):
     driver.get(URL)
     # wait for username input
@@ -41,8 +50,11 @@ def perform_login(driver, username, password):
 def test_positive_login_and_capture(driver):
     # Home page
     driver.get(URL)
+    # Validate homepage title and URL
     assert "Swag Labs" in driver.title
     assert driver.current_url.startswith(URL)
+    print("Homepage title:", driver.title)
+    print("Homepage URL:", driver.current_url)
 
     # Login with valid credentials
     perform_login(driver, USERNAME, PASSWORD)
@@ -59,6 +71,10 @@ def test_positive_login_and_capture(driver):
         "secretsauce_valid_login_result.png"
     )
     take_screenshot(driver, screenshot_path)
+    # Save full page HTML as required
+    saved = save_page_source(driver, "Webpage_task_11.txt")
+    assert os.path.exists(saved)
+    print("Saved page source to:", saved)
 
 
 def test_negative_login_wrong_password(driver):
