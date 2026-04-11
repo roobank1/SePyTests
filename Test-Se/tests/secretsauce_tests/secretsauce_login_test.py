@@ -59,9 +59,6 @@ def test_positive_login_and_capture(driver):
         "secretsauce_valid_login_result.png"
     )
     take_screenshot(driver, screenshot_path)
-    # Save page source
-    # saved = save_page_source(driver, "Webpage_task_11.txt")
-    # assert os.path.exists(saved)
 
 
 def test_negative_login_wrong_password(driver):

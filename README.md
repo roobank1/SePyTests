@@ -4,8 +4,8 @@ Overview
 - Simple Selenium test framework using pytest. Tests live under `Test-Se/tests/` and are grouped by feature (e.g. `duckduckgo_tests`, `secretsauce_tests`).
 
 Prerequisites
-- Python 3.8+ and a virtual environment in `Test-Se/.venv` (project already uses one).
-- Google Chrome installed and chromedriver accessible on PATH (or placed next to the Chrome binary).
+- Python 3.8+ and a virtual environment in `Test-Se/.venv` .
+- Google Chrome installed and chromedriver accessible on PATH.
 
 Setup
 1. Activate the venv:
@@ -41,11 +41,6 @@ pytest Test-Se/tests/duckduckgo_tests --html=duckduckgo_test_report.html -q
 ```
 
 Screenshots and artifacts
-- Tests save screenshots under `Test-Se/screenshots/` or `Test-Se/tests/<suite>/test_screenshots/` depending on the test.
-- Page source saved by SauceDemo test: `Test-Se/Webpage_task_11.txt`.
+- Tests save screenshots under `Test-Se/tests/<suite>/test_screenshots/` depending on the test.
 
-
-Notes
-- Tests use real browsers; running them on CI likely requires a headless configuration or Docker image with browser drivers.
-- To mark Selenium tests and skip during quick local runs, consider adding pytest markers (e.g. `@pytest.mark.selenium`).
 
