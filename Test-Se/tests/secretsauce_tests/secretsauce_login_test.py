@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 URL = "https://www.saucedemo.com/"
 # Load credentials from .env (optional). Defaults kept for convenience.
 load_dotenv()
-USERNAME = os.environ.get("SAUCE_USERNAME", "standard_user")
-PASSWORD = os.environ.get("SAUCE_PASSWORD", "secret_sauce")
+USERNAME = os.environ.get("SAUCE_USERNAME", "username")
+PASSWORD = os.environ.get("SAUCE_PASSWORD", "password")
 TIMEOUT = 10
 
 
