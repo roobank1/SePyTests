@@ -1,0 +1,45 @@
+name: Nightly Selenium Tests
+
+on:
+  schedule:
+    # Runs once per day at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb chromium-browser chromium-chromedriver
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r Test-Se/requirements-dev.txt
+          pip install pytest-html
+
+      - name: Run tests (headful under Xvfb)
+        env:
+          DISPLAY: :99
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 &
+          pytest Test-Se --html=reports/nightly_report.html -q || true
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-test-report
+          path: |
+            reports/nightly_report.html
+            Test-Se/screenshots/**
