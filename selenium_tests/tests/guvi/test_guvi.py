@@ -1,4 +1,4 @@
-# Simple Guvi login tests with safe fallbacks.
+# Simple Guvi login tests without using page object model, to demonstrate basic Selenium usage and test structure.
 
 import os
 import pytest
